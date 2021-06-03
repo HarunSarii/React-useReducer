@@ -1,24 +1,31 @@
-import { useState } from 'react'
+// import { useState } from 'react'
+import { useReducer } from 'react'
 
+import { reducer } from './reducer'
+const initialState = {
+  data: '',
+  loading: false,
+  error: ''
+}
 function App() {
-  const [data, setData] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  const { data, loading, error } = state
+
+  // const [data, setData] = useState('')
+  // const [loading, setLoading] = useState(false)
+  // const [error, setError] = useState('')
 
   const fetchData = () => {
-    setLoading(true)
-    setError('')
-    setData('')
+    dispatch({ type: 'FETCH_START' })
 
-    fetch('')
+    fetch('https://api.thecatapi.com/v1/images/search')
       .then((res) => res.json())
       .then((res) => {
-        setLoading(false)
-        setData(res[0].url)
+        dispatch({ type: 'FETCH_SUCCESS', payload: res[0].url })
       })
       .catch(() => {
-        setLoading(false)
-        setError('Something went wrong!')
+        dispatch({ type: 'FETCH_FAIL', payload: 'Something went wrong!' })
       })
   }
 
