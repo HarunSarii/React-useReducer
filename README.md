@@ -1,3 +1,5 @@
+![useReducer](https://user-images.githubusercontent.com/75949382/123539144-e84a6300-d740-11eb-93a7-e69b39a3ee82.gif)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
